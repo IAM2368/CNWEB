@@ -42,7 +42,8 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        return view('tasks.show', compact('task'));
+        $tasks = Task::findOrFail($id);
+        return view('tasks.show', compact('tasks'));
     }
 
     /**
@@ -50,7 +51,8 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        return view('tasks.edit', compact('task'));
+        $tasks = Task::findOrFail($id);
+        return view('tasks.edit', compact('tasks'));
     }
 
     /**
@@ -58,14 +60,26 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $tasks = Task::findOrFail($id);
+        $tasks->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'long_description' => $request->input('long_description'),
+            'completed' => $request->has('completed') ? true : false,  // Kiểm tra checkbox
+        ]);
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $tasks = Task::findOrFail($id);
+        $tasks->delete();
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
+
     }
 }

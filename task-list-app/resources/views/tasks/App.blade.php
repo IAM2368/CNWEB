@@ -1,51 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .completed {
-            text-decoration: line-through;
-            color: gray;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task List App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-<div class="container mt-5">
-    <h1>The list of tasks</h1>
-    <a href="create.blade.php" class="text-primary fw-bold">Add Task!</a>
-    <ul class="list-unstyled mt-3">
-        <li class="completed">Unde architecto aut enim ducimus dolor laboriosam.</li>
-        <li class="completed">Consequatur aut quisquam magnam et.</li>
-        <li>Maxime minus qui inventore ducimus recusandae et.</li>
-        <li class="completed">Deleniti amet quibusdam sint suscipit consequatur aliquid eveniet.</li>
-        <li>Nulla sit quas labore ex quia eum qui.</li>
-        <li>A minima dignissimos similique assumenda voluptas nesciunt.</li>
-        <li class="completed">Minima adipisci illo aut enim.</li>
-        <li>Unde inventore fuga eaque.</li>
-        <li class="completed">Asperiores dolor consequuntur ipsam natus quia nemo.</li>
-        <li>Totam excepturi molestiae doloremque cumque necessitatibus odit ipsa.</li>
-    </ul>
-    <div class="d-flex justify-content-between">
-        <div>Showing 1 to <b>10</b> of <b>20</b> results</div>
-        <nav>
-            <ul class="pagination mb-0">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">&raquo;</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('tasks.index') }}">Task List App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('tasks.index') }}">Danh sách Task</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('tasks.create') }}">Thêm mới</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        @yield('content')
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
